@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 
 
+
 Routes
 /* ***********************
  * View Engine and Templates
@@ -35,3 +36,9 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+// Root route to render index.ejs with a title
+app.get('/', (req, res) => {
+  res.locals.active = 'home';
+  res.render('index', { title: 'Home' });
+});
