@@ -12,8 +12,6 @@ const app = express()
 const static = require("./routes/static")
 
 
-
-Routes
 /* ***********************
  * View Engine and Templates
  *************************/
