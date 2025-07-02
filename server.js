@@ -11,6 +11,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 
+
+Routes
 /* ***********************
  * Routes
  *************************/
