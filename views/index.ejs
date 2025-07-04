@@ -1,34 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <main>
-      <section class="hero">
-        <img src="/images/car-hero.jpg" alt="CSE Motors showroom" />
-        <div class="hero-text">
-          <h2>Your Dream Car Awaits</h2>
-          <p>Explore our top-quality selection today!</p>
-        </div>
-      </section>
+<div class="hero">
+    <div class="hero__info">
+        <h2>DMC Delorean</h2>
+        <ul class="hero__features">
+            <li>3 Cup holders</li>
+            <li>Superman doors</li>
+            <li>Fuzzy dice!</li>
+            <li>Flux capacitor ready</li>
+        </ul>
+        <button class="cta-button">Own Today</button>
+    </div>
+    <div class="hero__image">
+        <img src="public/images/site/Delorean car.webp" alt="DMC Delorean car">
+    </div>
+</div>
 
-      <section class="features">
-        <div class="feature">
-          <img src="/images/service.jpg" alt="Service" />
-          <h3>Exceptional Service</h3>
-          <p>We provide the best service in the industry.</p>
+<div class="content-columns">
+    <section class="upgrades">
+        <h2>Delorean Upgrades</h2>
+        <div class="upgrades__grid">
+            <div class="upgrade-item">
+                <img src="images/site/flux-cap.webp" alt="Flux Capacitor">
+                <p>Flux Capacitor</p>
+            </div>
+            <div class="upgrade-item">
+                <img src="images/site/flame-decals.webp" alt="Flame Decals">
+                <p>Flame Decals</p>
+            </div>
+            <div class="upgrade-item">
+                <img src="images/bumper-stickers..webp" alt="Bumper Stickers">
+                <p>Bumper Stickers</p>
+            </div>
+            <div class="upgrade-item">
+                <img src="images/site/hub-caps.webp" alt="Hub Caps">
+                <p>Hub Caps</p>
+            </div>
         </div>
-        <div class="feature">
-          <img src="/images/selection.jpg" alt="Selection" />
-          <h3>Wide Selection</h3>
-          <p>Choose from a wide range of vehicles.</p>
-        </div>
-        <div class="feature">
-          <img src="/images/finance.jpg" alt="Financing" />
-          <h3>Flexible Financing</h3>
-          <p>Affordable financing options tailored for you.</p>
-        </div>
-      </section>
-    </main>
+    </section>
 
-    <%- include('partials/footer') %>
-  </body>
-</html>
+    <section class="reviews">
+        <h2>DMC Delorean Reviews</h2>
+        <ul>
+            <li>"So fast its almost like traveling in time." (4/5)</li>
+            <li>"Coolest ride on the road." (4/5)</li>
+            <li>"I'm feeling McFly!" (5/5)</li>
+            <li>"The most futuristic ride of our day." (4.5/5)</li>
+            <li>"80's livin and I love it!" (5/5)</li>
+        </ul>
+    </section>
+</div>
