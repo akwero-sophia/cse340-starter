@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-// Static Routes
-// Set up "public" folder / subfolders for static files
 // Serve static files from the "public" directory
 router.use(express.static(path.join(__dirname, '../public')));
 router.use("/css", express.static(path.join(__dirname, "../public/css")));
