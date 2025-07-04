@@ -10,5 +10,4 @@ router.use("/images", express.static(path.join(__dirname, "../public/images")));
 
 module.exports = router;
 
-c 
 
