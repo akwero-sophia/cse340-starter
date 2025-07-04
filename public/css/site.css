@@ -85,8 +85,14 @@ nav {
   list-style: none;
   overflow-x: auto;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  /* Custom scrollbar for Webkit browsers */
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+    border-radius: 3px;
+  }
   /* Add these properties for even spacing */
   justify-content: space-evenly;
   padding: 0;
