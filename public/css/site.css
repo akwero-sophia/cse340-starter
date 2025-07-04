@@ -1,0 +1,165 @@
+ /* Base Reset and Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #222222;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Header */
+header {
+  background-color: #0d47a1; /* Deep blue */
+  color: #ffffff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+/* Navigation */
+nav {
+  background-color: #1565c0; /* Slightly lighter blue */
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+nav a {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  text-align: center;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 6px;
+  max-width: 80%;
+  text-align: left;
+}
+
+.hero-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+  font-size: 1rem;
+}
+
+/* Features Section */
+.features {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature img {
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.feature h3 {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  color: #0d47a1;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #333;
+  padding: 0.5rem 1rem;
+}
+
+/* Footer */
+footer {
+  background-color: #0d47a1;
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Media Query for Tablets and Larger Screens */
+@media screen and (min-width: 768px) {
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .hero-text {
+    bottom: 15%;
+    left: 10%;
+    max-width: 50%;
+    font-size: 1.2rem;
+  }
+
+  .hero-text h2 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+
+  .features {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .feature {
+    max-width: 30%;
+  }
+}
