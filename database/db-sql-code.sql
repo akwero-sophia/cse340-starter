@@ -29,8 +29,9 @@ CREATE TABLE IF NOT EXISTS public.inventory
 	 inv_miles integer NOT NULL,
 	 inv_color character varying NOT NULL,
 	 classification_id integer NOT NULL,
-	 CONSTRAINT inventory_pkey PRIMARY KEY (int_id)
+	 CONSTRAINT inventory_pkey PRIMARY KEY (inv_id)
 );
+
 
 
 
