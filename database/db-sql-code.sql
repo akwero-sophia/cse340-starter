@@ -1,5 +1,4 @@
-CREATE TYPE Publicublic.account_type AS ENUM
-    ('Client', 'Employee', 'Admin');
-
-ALTER TYPE  Public.account_type
-    OWNER TO demo123;
+-- Use a VARCHAR column with a CHECK constraint for account_type
+CREATE TABLE "public".accounts (
+    account_type VARCHAR(20) CHECK (account_type IN ('Client', 'Employee', 'Admin'))
+);
