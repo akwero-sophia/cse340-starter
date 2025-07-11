@@ -36,3 +36,4 @@ CREATE TABLE IF NOT EXISTS public.inventory
 
 
 
+
