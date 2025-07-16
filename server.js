@@ -42,3 +42,8 @@ app.get('/', (req, res) => {
   res.locals.active = 'home';
   res.render('index', { title: 'Home' });
 });
+
+// Index route
+app.get("/", baseController.buildhome)
+
+
