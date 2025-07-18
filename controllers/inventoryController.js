@@ -3,6 +3,7 @@ const utilities = require('../utilities');
 const validator = require('validator');
 const { getVehicleById } = require('../models/lnventoryModel');
 const { renderVehicleDetailHTML } = require('../utilities');
+const pool = require('../database/pool');
 
 // Management view
 exports.managementView = (req, res) => {
