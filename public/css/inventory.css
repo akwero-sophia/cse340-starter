@@ -1,0 +1,255 @@
+/* Vehicle Detail Layout */
+.vehicle-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.vehicle-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.vehicle-image {
+  flex: 1 1 40%;
+}
+
+.vehicle-info {
+  flex: 1 1 55%;
+  margin-bottom: 40px;
+}
+
+/* Reviews Section */
+.reviews-section {
+  border-top: 2px solid #eee;
+  padding-top: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.reviews-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.review-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
+}
+
+.rating-overview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avg-rating {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 20px;
+  color: #ddd;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.review-count {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.rating-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 250px;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8em;
+}
+
+.rating-label {
+  width: 30px;
+  text-align: right;
+}
+
+.bar-container {
+  flex-grow: 1;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #ffc107;
+  transition: width 0.3s ease;
+}
+
+.count {
+  width: 20px;
+  text-align: right;
+  color: #666;
+}
+
+.review-actions {
+  display: flex;
+  align-items: center;
+}
+
+.login-prompt {
+  color: #666;
+  font-style: italic;
+}
+
+.login-prompt a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #4a90e2;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background: #357abd;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-item {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+
+.reviewer-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.reviewer-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.reviewer-name {
+  font-weight: bold;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.review-content p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.no-reviews h3 {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.no-reviews p {
+  color: #888;
+  margin-bottom: 25px;
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .vehicle-detail-container {
+    flex-direction: column;
+  }
+
+  .vehicle-image,
+  .vehicle-info {
+    flex: 1 1 100%;
+  }
+
+  .reviews-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .review-summary,
+  .rating-breakdown {
+    min-width: auto;
+  }
+
+  .review-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .reviewer-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

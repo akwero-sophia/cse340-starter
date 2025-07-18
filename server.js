@@ -5,45 +5,29 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express")
-const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
-const app = express()
-const static = require("./routes/static")
-const baseController =
-require("./controllers/baseController")
-
+const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
+const app = express();
+const static = require("./routes/static");
+const inventoryRoutes = require('./routes/inventory');
+const miscRouter = require('./routes/misc');
+const accountRoutes = require('./routes/account');
+const reviewRoutes = require('./routes/review');
+require('./database/pool');
+const classificationModel = require('./models/classification-model');
+const classificationRouter = require('./routes/classification');
+const session = require('express-session');
+const flash = require('connect-flash');
+const utilities = require('./utilities/');
 
 /* ***********************
  * View Engine and Templates
  *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout")
-/*************************/
-app.use(static)
-
-/* ***********************
- * Local Server Information
- * Values from .env (environment) file
- *************************/
-// Removed duplicate port and host declarations
-
-/* ***********************
- * Log statement to confirm server operation
- *************************/
-app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
-})
-
-// Root route to render index.ejs with a title
-app.get('/', (req, res) => {
-  res.locals.active = 'home';
-  res.render('index', { title: 'Home' });
-});
-
-// Index route
-app.get("/", baseController.buildhome)
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "layouts/layout"); // Remove the "./" prefix
 
 /* ***********************
  * Middleware
