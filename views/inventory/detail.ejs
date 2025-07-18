@@ -25,13 +25,23 @@
             </div>
             
             <div class="rating-breakdown">
-              <% for(let i = 5; i >= 1; i--) { %>
+              <% for(let i = 5; i >= 1; i--) { 
+                let ratingKey = '';
+                if (i === 1) ratingKey = 'one_star';
+                else if (i === 2) ratingKey = 'two_star';
+                else if (i === 3) ratingKey = 'three_star';
+                else if (i === 4) ratingKey = 'four_star';
+                else ratingKey = 'five_star';
+
+                let count = reviewStats[ratingKey] || 0;
+                let percentage = reviewStats.total_reviews > 0 ? (count / reviewStats.total_reviews * 100) : 0;
+              %>
                 <div class="rating-bar">
                   <span class="rating-label"><%= i %>⭐</span>
                   <div class="bar-container">
-                    <div class="bar-fill" style="width: <%= reviewStats.total_reviews > 0 ? (reviewStats[`${i === 1 ? 'one' : i === 2 ? 'two' : i === 3 ? 'three' : i === 4 ? 'four' : 'five'}_star`] / reviewStats.total_reviews * 100) : 0 %>%"></div>
+                   <div class="bar-fill" style="width: <%= percentage.toFixed(2) %>%"></div>
                   </div>
-                  <span class="count"><%= reviewStats[`${i === 1 ? 'one' : i === 2 ? 'two' : i === 3 ? 'three' : i === 4 ? 'four' : 'five'}_star`] %></span>
+                  <span class="count"><%= count %></span>
                 </div>
               <% } %>
             </div>
@@ -87,6 +97,7 @@
     </div>
   <% } %>
 </main>
+
 
 <style>
 .vehicle-detail {
