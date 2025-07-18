@@ -1,7 +1,7 @@
-const inventoryModel = require('../models/inventoryModel');
+const lnventoryModel = require('../models/lnventoryModel');
 const utilities = require('../utilities');
 const validator = require('validator');
-const { getVehicleById } = require('../models/inventoryModel');
+const { getVehicleById } = require('../models/lnventoryModel');
 const { renderVehicleDetailHTML } = require('../utilities');
 
 // Management view
