@@ -60,7 +60,7 @@ VALUES
   ('Truck');
 
 
--- Data for table `inventory`
+-- 7) Data for table `inventory`
 
 INSERT INTO public.inventory (
     inv_make,
