@@ -1,0 +1,139 @@
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+#wrapper {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+}
+
+#top-header {
+  display: Flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+#top-header a {
+  text-decoration: none;
+  color: black;
+}
+
+.siteName {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+nav li {
+  cursor: pointer;
+}
+
+nav li:hover {
+  color: #ffcc00;
+  text-decoration: underline;
+}
+
+.hero-container {
+  position: relative;
+}
+
+.hero-container img {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  margin: 0.5rem 0 1rem 0;
+  padding-bottom: 20px;
+}
+
+
+.hero-content {
+  position: absolute;
+  top: 1%;
+  background-color: white;
+  border: 1px solid beige;
+  padding: 10px;
+  margin-left: .5rem;
+  border-radius: 8px;
+  opacity: 0.9;
+  color: #005488;
+  max-width: fit-content;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.hero-content button {
+  background-color: #31a1e7;
+  color: black;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+}  
+
+.delorean-reviews h2 {
+  padding-bottom: 20px;
+}
+
+.delorean-reviews li {
+  font-size: large;
+  padding-bottom: 30px;
+}
+
+.delorean-upgrades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.upgrades img {
+  padding: 4px 30px 4px 30px;
+  background-color: #31a1e7;
+  width: 100%;
+
+}
+
+figcaption {
+  text-decoration: underline;
+  color: blue;
+}
+
+@media (min-width: 768px) {
+  html {
+    background-image: url(../images/site/checkerboard.jpg);
+    background-size: contain;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100%;
+  }
+  
+  #wrapper {
+    width: 70%;
+    margin: auto;
+    border: 5px solid #31a1e7;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .hero-container img {
+    max-width: 600px;
+  }
+
+  .delorean-info {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: auto;
+    justify-content: left;
+    gap: 50px;
+  }
+}
