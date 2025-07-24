@@ -14,6 +14,7 @@
   display: Flex;
   justify-content: space-between;
   padding-bottom: 10px;
+
 }
 
 #top-header a {
@@ -21,7 +22,7 @@
   color: black;
 }
 
-.siteName {
+ .siteName {
   font-size: xx-large;
   font-weight: bolder;
 }
@@ -33,6 +34,22 @@ nav ul {
   background-color: black;
   color: white;
   padding: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  position: relative;
+}
+
+nav ul li a:hover {
+  color: #ffcc00;
+  text-decoration: underline;
+}
+
+nav ul li {
+  padding: 10px;
 }
 
 nav li {
@@ -107,6 +124,27 @@ figcaption {
   color: blue;
 }
 
+#inv-display li {
+  border: 1px solid beige;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px 0px rgba(241, 239, 239);
+  text-align: center;
+  list-style: none;
+  padding-bottom: 10px;
+}
+
+hr { 
+  border: 4px solid rgb(95, 93, 93);
+  width: 100%;
+}
+
+#inv-display li img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 @media (min-width: 768px) {
   html {
     background-image: url(../images/site/checkerboard.jpg);
@@ -116,7 +154,15 @@ figcaption {
     height: 100%;
   }
   
-  #wrapper {
+#inv-display{
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250PX, 1fr));
+  gap: 20px;
+  list-style: mome;
+}
+
+#wrapper {
     width: 70%;
     margin: auto;
     border: 5px solid #31a1e7;
@@ -137,3 +183,5 @@ figcaption {
     gap: 50px;
   }
 }
+
+ 
