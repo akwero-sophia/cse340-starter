@@ -65,11 +65,7 @@ app.get("/account/test", (req, res) => {
   res.send("Account test route is working");
 });
 
-// 404 Not Found Route - Must Be Last
-app.use((req, res, next) => {
-  next({ status: 404, message: "Sorry, we appear to have lost that page." });
-});
-
+ 
 /* ***********************
  * Express Error Handler
  *************************/
