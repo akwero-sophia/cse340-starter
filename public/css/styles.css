@@ -14,7 +14,6 @@
   display: Flex;
   justify-content: space-between;
   padding-bottom: 10px;
-
 }
 
 #top-header a {
@@ -22,41 +21,25 @@
   color: black;
 }
 
- .siteName {
+.siteName {
   font-size: xx-large;
   font-weight: bolder;
 }
 
-nav ul {
+#nav-list {
   display: flex;
   justify-content: space-around;
   list-style: none;
   background-color: black;
-  color: white;
   padding: 20px;
 }
 
-nav ul li a {
+#nav-list li a {
   color: white;
   text-decoration: none;
-  padding: 10px;
-  position: relative;
 }
 
-nav ul li a:hover {
-  color: #ffcc00;
-  text-decoration: underline;
-}
-
-nav ul li {
-  padding: 10px;
-}
-
-nav li {
-  cursor: pointer;
-}
-
-nav li:hover {
+#nav-list li a:hover {
   color: #ffcc00;
   text-decoration: underline;
 }
@@ -73,7 +56,6 @@ nav li:hover {
   padding-bottom: 20px;
 }
 
-
 .hero-content {
   position: absolute;
   top: 1%;
@@ -83,7 +65,7 @@ nav li:hover {
   margin-left: .5rem;
   border-radius: 8px;
   opacity: 0.9;
-  color: #005488;
+  color: #03436b;
   max-width: fit-content;
   width: 100%;
   word-wrap: break-word;
@@ -116,12 +98,11 @@ nav li:hover {
   padding: 4px 30px 4px 30px;
   background-color: #31a1e7;
   width: 100%;
-
 }
 
 figcaption {
   text-decoration: underline;
-  color: blue;
+  color: rgb(144, 144, 196);
 }
 
 #inv-display li {
@@ -145,6 +126,62 @@ hr {
   padding: 10px;
 }
 
+/* ✅ Updated for better contrast */
+.form-container {
+  background-color: #2f3b4c;
+  color: #ffffff;
+  width: 50%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+/* Inputs remain readable, no change needed */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ✅ Text alignment */
+form p {
+  text-align: center;
+}
+
+/* ✅ Final fix: Sign-up link color to white */
+.form-container a {
+  color: #ffffff;
+}
+
+.form-container a:hover {
+  color: #ffcc00;
+}
+
+/* ✅ Button contrast fix */
+form button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #2c3440;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   html {
     background-image: url(../images/site/checkerboard.jpg);
@@ -153,19 +190,19 @@ hr {
     margin: 0;
     height: 100%;
   }
-  
-#inv-display{
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250PX, 1fr));
-  gap: 20px;
-  list-style: mome;
-}
 
-#wrapper {
+  #inv-display {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250PX, 1fr));
+    gap: 20px;
+    list-style: mome;
+  }
+
+  #wrapper {
     width: 70%;
     margin: auto;
-    border: 5px solid #31a1e7;
+    border: 5px solid #244d9f;
     background: white;
     padding: 10px;
     border-radius: 8px;
@@ -184,4 +221,12 @@ hr {
   }
 }
 
- 
+/* ✅ Minimal fix for contrast issue - labels and placeholders */
+.form-container label {
+  color: #ffffff;
+}
+
+.form-container ::placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
