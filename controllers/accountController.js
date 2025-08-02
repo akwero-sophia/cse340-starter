@@ -1,6 +1,6 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcrypt")
 
 // Build the login view
 async function buildLoginView(req, res, next) {
