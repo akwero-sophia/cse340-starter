@@ -1,14 +1,20 @@
-<!-- Content Heading -->
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
-  
-  <!-- Message Block -->
-  <%- messages() %>
-  
-  <form action="/inv/add-inventory" method="post">
+<h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="validation-notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>    
+    <% }) %>
+    </ul>
+<% } %>
+
+<form action="/inv/add-inventory" method="post">
     <p>ALL FIELDS ARE REQUIRED</p>
     <label for="classificationList">Classification</label>
     <%- list %>
