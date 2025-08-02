@@ -17,6 +17,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+ 
 
 /* ***********************
  * Middleware 
@@ -28,7 +29,7 @@ app.use(session({
   }),
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUniniatialized: true,
+  saveUniniatialized: true, 
   name: 'sessionId',
 }))
 

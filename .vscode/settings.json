@@ -10,7 +10,16 @@
             "server": "localhost",
             "driver": "PostgreSQL",
             "name": "Render",
-            "connectString": "postgresql://demo123:qziO8Eu18Q12WXuY0ZAoA9MFcu10TAat@dpg-d1j5nsqdbo4c73c6b0b0-a.oregon-postgres.render.com/demo123_lfau"
+            "connectString": "postgresql://cse340:bGmVvX1pYYMjkbVkE4wzvNBPL8NkEa11@dpg-d2763f0gjchc73fc5rh0-a.oregon-postgres.render.com/cse340_0d5m"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Render",
+            "database": "cse340_0d5m",
+            "username": "cse340"
         }
     ]
 }
