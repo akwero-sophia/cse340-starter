@@ -21,15 +21,15 @@
 
     <label for="inv-make">Make</label>
     <input type="text" id="inv-make" name="inv_make" required 
-    pattern="^[A-Za-z]{3}$" placeholder="min of 3 characters"
+    minlength="3" placeholder="min of 3 characters"
     value="<%= locals.inv_make %>">
 
     <label for="inv-model">Model</label>
     <input type="text" id="inv-model" name="inv_model" required 
-    pattern="^[A-Za-z]{3}$" placeholder="min of 3 characters" value="<%= locals.inv_model %>">
+    minlength="3" placeholder="min of 3 characters" value="<%= locals.inv_model %>">
 
     <label for="inv-description">Description</label>
-    <textarea rows="5" cols="40" name="inv_description"  id="inv-description" required value="<%= locals.inv_description %>"></textarea>
+    <textarea rows="5" cols="40" name="inv_description"  id="inv-description" required><%= locals.inv_description || '' %></textarea>
 
     <label for="inv-image">Image path</label>
     <input type="text" id="inv-image" name="inv_image" required value="/images/vehicles/no-image.png">
@@ -48,8 +48,7 @@
     value="<%= locals.inv_year %>">
 
     <label for="inv-miles">Miles</label>
-    <input type="number" id="inv-miles" name="inv_miles" required min="0" 
-    step="1" pattern="^\d+$" value="<%= locals.inv_miles %>"
+    <input type="text" id="inv-miles" name="inv_miles" required pattern="^\d+$" value="<%= locals.inv_miles %>"
     placeholder="digits only">
 
     <label for="inv-color">Color</label>

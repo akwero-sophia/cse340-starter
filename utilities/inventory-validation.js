@@ -1,6 +1,6 @@
 const utilities = require(".")
-const { body, validationResult } = require("express-validator")
-const validate = {}
+    const { body, validationResult } = require("express-validator")
+    const validate = {}
 
 /* **
  * Add classification data validation rules.
@@ -54,23 +54,23 @@ validate.addInventoryRules = () => {
             .trim()
             .escape()
             .notEmpty()
-            .matches(/^[A-Za-z]{3}$/)
-            .withMessage("Provide a make."),
+            .isLength({ min: 3 })
+            .withMessage("Provide the vehicle's make as required."),
 
         // the model is required
         body("inv_model")
             .trim()
             .escape()
             .notEmpty()
-            .matches(/^[A-Za-z]{3}$/)
-            .withMessage("Provide a model."),   
+            .isLength({ min: 3 })
+            .withMessage("Provide the vehicle's model as required."),   
             
         // the description is required
         body("inv_description")
             .trim()
             .escape()
             .notEmpty()
-            .withMessage("Provide a description."),    
+            .withMessage("Provide a description for the vehicle."),    
 
         // the price is required    
         body("inv_price")
@@ -78,7 +78,7 @@ validate.addInventoryRules = () => {
             .escape()
             .notEmpty()
             .matches(/^\d+(\.\d{1,2})?$/)
-            .withMessage("Provide a price."),
+            .withMessage("Provide the vehicle's price as required."),
 
         // the year is required
         body("inv_year")
@@ -86,7 +86,7 @@ validate.addInventoryRules = () => {
             .escape()
             .notEmpty()
             .matches(/^\d{4}$/)
-            .withMessage("Provide a year."), 
+            .withMessage("Provide a vehicle's year of make as required."), 
         
         // the miles are required    
         body("inv_miles")
@@ -94,7 +94,7 @@ validate.addInventoryRules = () => {
             .escape()
             .notEmpty()
             .matches(/^\d+$/)
-            .withMessage("Provide the miles."),    
+            .withMessage("Provide the vehicle's miles as required."),    
 
         // the color is required
         body("inv_color")
@@ -102,7 +102,7 @@ validate.addInventoryRules = () => {
             .escape()
             .notEmpty()
             .matches(/^[A-Za-z]+$/)
-            .withMessage("Provide a color."),    
+            .withMessage("Provide the vehicle's color as required."),    
     ]
 }
 
@@ -125,7 +125,7 @@ validate.checkNewVehicleData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        let list = await utilities.buildClassificationList()
+        let list = await utilities.buildClassificationList(classification_id)
         res.render("./inventory/add-inventory", {
             errors,
             title: " ",

@@ -23,17 +23,17 @@ const bodyParser = require("body-parser")
  *************************/
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
-    createTableIfMissing: false,
+    createTableIfMissing: true,
     pool,
   }),
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUniniatialized: false,
+  resave: true,
+  saveUniniatialized: true,
   name: 'sessionId',
 }))
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
