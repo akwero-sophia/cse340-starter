@@ -11,8 +11,9 @@
 }
 
 #top-header {
-  display: Flex;
+  display: flex;
   justify-content: space-between;
+  align-items: center; /*Added to vertically center and align horizontally */
   padding-bottom: 10px;
 }
 
@@ -32,6 +33,11 @@
   list-style: none;
   background-color: black;
   padding: 20px;
+}
+
+/* Added to align nav items horizontally */
+#nav-list li {
+  display: inline-block;
 }
 
 #nav-list li a {
@@ -126,7 +132,7 @@ hr {
   padding: 10px;
 }
 
-/* ✅ Updated for better contrast */
+/* Updated for better contrast */
 .form-container {
   background-color: #2f3b4c;
   color: #ffffff;
@@ -156,12 +162,12 @@ input[type="email"] {
   align-items: center;
 }
 
-/* ✅ Text alignment */
+/* Text alignment */
 form p {
   text-align: center;
 }
 
-/* ✅ Final fix: Sign-up link color to white */
+/* Final fix: Sign-up link color to white */
 .form-container a {
   color: #ffffff;
 }
@@ -170,7 +176,7 @@ form p {
   color: #ffcc00;
 }
 
-/* ✅ Button contrast fix */
+/* Button contrast fix */
 form button {
   margin-top: 20px;
   padding: 12px 20px;
@@ -221,7 +227,7 @@ form button {
   }
 }
 
-/* ✅ Minimal fix for contrast issue - labels and placeholders */
+/* Minimal fix for contrast issue - labels and placeholders */
 .form-container label {
   color: #ffffff;
 }

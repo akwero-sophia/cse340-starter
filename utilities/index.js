@@ -100,7 +100,6 @@ Util.buildClassificationList = async function (classification_id = null) {
     return classificationList
 }  
 
-
 /* **
  * Middleware For Handling Errors
  * Wrap other function in this for

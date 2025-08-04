@@ -7,18 +7,16 @@
  *************************/
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute");
 const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
-const accountRoute = require("./routes/accountRoute")
-const bodyParser = require("body-parser")
  
-
+ 
 /* ***********************
  * Middleware 
  *************************/
@@ -33,8 +31,6 @@ app.use(session({
   name: 'sessionId',
 }))
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -53,6 +49,9 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
+// Public Routes
+app.get("/", utilities.handleErrors(baseController.buildHome));
+app.use("/account", accountRoute);
 app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))

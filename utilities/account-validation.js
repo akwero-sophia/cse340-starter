@@ -8,7 +8,7 @@ const utilities = require(".")
  *************************/
 validate.registrationRules = () => {
     return [
-        // firstname is required and must be string
+// firstname is required and must be string
         body("account_firstname")
             .trim()
             .escape()
@@ -16,7 +16,7 @@ validate.registrationRules = () => {
             .isLength({ min: 1 })
             .withMessage("Please provide a first name."), // on error this message is sent.
 
-        // lastname is required and must be string
+// lastname is required and must be string
         body("account_lastname")
             .trim()
             .escape()
@@ -24,7 +24,7 @@ validate.registrationRules = () => {
             .isLength({ min: 2 })
             .withMessage("Please provide a last name."), // on error this message is sent.
 
-        // valid email is required and cannot already exist in the DB
+// valid email is required and cannot already exist in the DB
         body("account_email")
             .trim()
             .escape()
@@ -39,7 +39,7 @@ validate.registrationRules = () => {
                 }
             }),
 
-        // password is required amd must be strong password
+// password is required amd must be strong password
         body("account_password")  
             .trim()
             .notEmpty()
@@ -81,7 +81,7 @@ validate.checkRegData = async (req, res, next) => {
  * **/
 validate.loginRules = () => {
     return [
-        //valid email is required and cannot already exist in the DB
+//valid email is required and cannot already exist in the DB
         body("account_email")
             .trim()
             .escape()
@@ -96,7 +96,7 @@ validate.loginRules = () => {
                 }
             }),
 
-        // password is required to login
+// password is required to login
         body("account_password")
             .trim()
             .notEmpty()
