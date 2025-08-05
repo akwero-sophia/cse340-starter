@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
  /* ****************************************
 *  Build the login view
 * *************************************** */
-async function buildLogin(req, res, next) {
+async function buildLoginView(req, res, next) {
     let nav = await utilities.getNav()
     res.render("account/login", {
       title: "Login",
@@ -17,7 +17,7 @@ async function buildLogin(req, res, next) {
 /* ****************************************
 *  Deliver registration view
 * *************************************** */
-async function buildRegistration(req, res, next) {
+async function buildRegisterView(req, res, next) {
   try {let nav = await utilities.getNav()
   res.render("account/register", {
     title: "Register",
@@ -71,4 +71,4 @@ async function registerAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegistration }
+module.exports = { buildLoginView, buildRegisterView, registerAccount}

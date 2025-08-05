@@ -7,13 +7,22 @@
   
   <!-- Message Block -->
   <%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <%  }) %>
+    </ul>
+<% } %>
   
   <form id="add-class-form" action="/inv/add-classification" method="post" class="form-container">
-    <h2>Add Classification</h2>
-  
-    <label for="classification">Classification Name</label>
-    <div>(Must be only alphabetic characters and 3 or more characters)</div>
-    <input type="text" id="add-class" name="classification_name" placeholder="Enter classification name" pattern="[A-Za-z]+" required>
+    <p>This field is required</p>
+    <label for="classification-name">Classification Name</label>
+    <span>(Must be only alphabetic characters)</span>
+    <input type="text" id="classification-name" name="classification_name" 
+    placeholder="Enter classification name" pattern="^[A-Za-z]+$" required
+    value="<%= locals.classification_name %>">
     
     <button type="submit">Add Classification</button>
   </form>

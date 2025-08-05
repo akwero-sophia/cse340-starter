@@ -15,6 +15,8 @@ const accountRoute = require("./routes/accountRoute");
 const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
+const bodyParser = require("body-parser")
+const { body } = require("express-validator")
  
  
 /* ***********************
@@ -31,6 +33,8 @@ app.use(session({
   name: 'sessionId',
 }))
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -51,7 +55,7 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 // Public Routes
 app.get("/", utilities.handleErrors(baseController.buildHome));
-app.use("/account", accountRoute);
+
 app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))

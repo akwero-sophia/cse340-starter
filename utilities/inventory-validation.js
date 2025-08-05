@@ -1,79 +1,209 @@
-const { body, validationResult } = require("express-validator");
-const utilities = require("../utilities")
-const { getClassifications } = require("../models/inventory-model");
-/**
- * Validation rules for new inventory
- */
-const newInventoryRules = () => [
-  body("inv_make")
-    .trim()
-    .isLength({ min: 3 })
-    .withMessage("Make must be at least 3 characters."),
-  body("inv_model")
-    .trim()
-    .isLength({ min: 3 })
-    .withMessage("Model must be at least 3 characters."),
-  body("inv_year")
-    .isInt({ min: 1900, max: new Date().getFullYear() })
-    .withMessage("Invalid year."),
-  body("inv_description")
-    .trim()
-    .isLength({ min: 10 })
-    .withMessage("Description must be at least 10 characters."),
-  body("inv_price")
-    .isFloat({ min: 0 })
-    .withMessage("Price must be a positive number."),
-  body("inv_miles")
-    .isInt({ min: 0 })
-    .withMessage("Miles must be a non-negative integer."),
-  body("inv_color")
-    .trim()
-    .isLength({ min: 3 })
-    .withMessage("Color must be at least 3 characters."),
-];
+const utilities = require(".")
+    const { body, validationResult } = require("express-validator")
+    const validate = {}
 
-/**
- * Middleware to check data for new inventory
- */
-const checkInventoryData = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const classifications = await getClassifications();
-    return res.render("inventory/add-inventory", {
-      title: "Add New Inventory",
-      classifications: classifications.rows,
-      errors: errors.array(),
-      ...req.body,
-    });
-  }
-  next();
-};
+/* **
+ * Add classification data validation rules.
+ * **/    
+validate.addClassificationRules = () => {
+    return [
+        //classification_name is required and must be a string
+        body("classification_name")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isLength({ min: 1 })
+            .matches(/^[A-Za-z]+$/)
+            .withMessage("Provide a correct classification name."),
+    ]
+}
 
-/**
- * Middleware to check data for updating inventory
- */
-const checkUpdateData = async (req, res, next) => {
-    const errors = validationResult(req);
+/* **
+ * Check data and return erros or continue to add the classification
+ * **/    
+validate.checkAddData = async (req, res, next) => {
+    const {classification_name } = req.body
+    let errors = []
+    errors = validationResult(req)
     if (!errors.isEmpty()) {
-      try {
-        const classifications = await getClassifications();
         let nav = await utilities.getNav()
-        return res.render("./inventory/edit-inventory", {
-          title: `Edit ${req.body.inv_make} ${req.body.inv_model}`,
-          nav,
-          classifications: classifications.rows,
-          errors: errors.array(),
-          inv_id: req.body.inv_id,
-          ...req.body,
-        });
-      } catch (err) {
-        console.error("Error in checkUpdateData:", err);
-        req.flash("notice", "An error occurred while fetching classifications.");
-        res.redirect(`/inv/edit/${req.body.inv_id}`);
-      }
-    } else {
-      next();
+        res.render("./inventory/add-classification", {
+            errors,
+            title: "Add New Classification",
+            nav,
+            classification_name,
+        })
+        return
     }
-  };
+    next()
+}
 
-module.exports = { newInventoryRules, checkInventoryData, checkUpdateData };
+/* **
+ * Add classification data validation rules.
+ * **/  
+validate.addInventoryRules = () => {
+    return [
+        // classification name is required. Must be selected from the drop down select list.
+        body("classification_id")
+            .notEmpty()
+            .isInt({ min: 1 })
+            .withMessage("A classification must be selected."),
+
+        // the make is required
+        body("inv_make")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isLength({ min: 3 })
+            .withMessage("Provide the vehicle's make as required."),
+
+        // the model is required
+        body("inv_model")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isLength({ min: 3 })
+            .withMessage("Provide the vehicle's model as required."),   
+            
+        // the description is required
+        body("inv_description")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Provide a description for the vehicle."),    
+    
+        // the vehicle image is required    
+        body("inv_image")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Provide an image for the vehicle."),  
+
+        // the thumbnail is required    
+        body("inv_thumbnail")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Provide a thumbnail for the vehicle."),       
+                    
+        // the price is required    
+        body("inv_price")
+            .trim()
+            .escape()
+            .notEmpty()
+            .matches(/^\d+(\.\d{1,2})?$/)
+            .withMessage("Provide the vehicle's price as required."),
+
+        // the year is required
+        body("inv_year")
+            .trim()
+            .escape()
+            .notEmpty()
+            .matches(/^\d{4}$/)
+            .withMessage("Provide a vehicle's year of make as required."), 
+        
+        // the miles are required    
+        body("inv_miles")
+            .trim()
+            .escape()
+            .notEmpty()
+            .matches(/^\d+$/)
+            .withMessage("Provide the vehicle's miles as required."),    
+
+        // the color is required
+        body("inv_color")
+            .trim()
+            .escape()
+            .notEmpty()
+            .matches(/^[A-Za-z]+$/)
+            .withMessage("Provide the vehicle's color as required."),    
+    ]
+}
+
+/* **
+ * Check data and return erros or continue to add the car
+ * **/    
+validate.checkNewVehicleData = async (req, res, next) => {
+    const { 
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
+    } = req.body
+
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let list = await utilities.buildClassificationList(classification_id)
+        res.render("./inventory/add-inventory", {
+            errors,
+            title: "Add New Classification",
+            nav: null,
+            list,
+            classification_id,
+            inv_make,
+            inv_model,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_year,
+            inv_miles,
+            inv_color,
+        })
+        return
+    }
+    next()
+}
+
+validate.checkEditVehicleData = async (req, res, next) => {
+    const { 
+        inv_id,
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
+    } = req.body
+
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let list = await utilities.buildClassificationList(classification_id)
+        res.render("./inventory/edit-inventory", {
+            errors,
+            title: "Edit " + inv_make + " " + inv_model,
+            nav,
+            list,
+            inv_id,
+            classification_id,
+            inv_make,
+            inv_model,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_year,
+            inv_miles,
+            inv_color,
+        })
+        return
+    }
+    next()
+}
+
+
+module.exports = validate

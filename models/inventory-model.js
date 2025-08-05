@@ -89,36 +89,25 @@ async function getDetailByVehicleId(inv_id) {
 /* ***************************
  *  Add Classification if not already in system
  * ************************** */
-async function addClass(classification_name) {
-  try {
-    console.log("Checking for existing classification:", classification_name);
-
-    const checkResult = await pool.query(
-      `SELECT classification_name FROM public.classification WHERE classification_name = $1`,
-      [classification_name]
-    );
-    console.log("Check result:", checkResult.rows);
-
-    if (checkResult.rows.length > 0) {
-      console.log("Classification already exists:", classification_name);
-      return { message: "Classification name already exists", success: false };
+async function addClassification(classification_name) {
+    try {
+        const sql = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *"
+        return await pool.query(sql, [classification_name])
+    } catch (error) {
+        return error.message
     }
+}
 
-    console.log("Inserting new classification:", classification_name);
-
-    const result = await pool.query(
-      `INSERT INTO public.classification (classification_name) 
-       VALUES ($1) 
-       RETURNING *`,
-      [classification_name]
-    );
-
-    console.log("Insert result:", result.rows);
-    return { data: result.rows[0], success: true };
-  } catch (error) {
-    console.error("Error in addClass:", error);
-    throw error;
-  }
+/* **
+ * Add new vehicle
+ * **/
+async function addNewVehicle(inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id) {
+    try {
+        const sql = "INSERT INTO inventory (inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
+        return await pool.query(sql, [inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id])
+    } catch (error) {
+        return error.message
+    }
 }
 
 async function addInventory(data) {
@@ -149,4 +138,4 @@ async function addInventory(data) {
   }
 }
 
-module.exports = { updateInventory, getClassifications, getInventoryByClassificationId, getDetailByVehicleId, addClass, addInventory }
+module.exports = { updateInventory, getClassifications, getInventoryByClassificationId, getDetailByVehicleId, addClassification, addNewVehicle, addInventory }
