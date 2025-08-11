@@ -5,6 +5,9 @@
 /* ***********************
  * Require Statements
  *************************/
+const utilities = require("./utilities")
+const cookieParser = require("cookie-parser")
+const env = require("dotenv").config();
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const app = express()
@@ -12,13 +15,11 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute");
-const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
-const { body } = require("express-validator")
  
- 
+
 /* ***********************
  * Middleware 
  *************************/
@@ -29,12 +30,14 @@ app.use(session({
   }),
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUniniatialized: true, 
+  saveUninitialized: true, 
   name: 'sessionId',
 }))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -53,9 +56,6 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-// Public Routes
-app.get("/", utilities.handleErrors(baseController.buildHome));
-
 app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
@@ -90,7 +90,7 @@ app.use(async (err, req, res, next) => {
 const port = process.env.PORT || 5500
 const host = process.env.HOST || "localhost"
 
-/* ***********************
+/* ************************
  * Log statement to confirm server operation
  *************************/
 app.listen(port, () => {

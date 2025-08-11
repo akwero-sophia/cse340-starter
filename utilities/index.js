@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* **
  * Constructs the nav HTML unordered list
@@ -126,6 +128,65 @@ Util.buildClassificationList = async function (classification_id = null) {
  * **/
 Util.handleErrors  = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
   
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err) {
+          req.flash("Please log in")
+          res.clearCookie("jwt")
+          res.locals.loggedin = false
+          return res.redirect("/account/login")
+        }
+        res.locals.accountData = accountData
+        res.locals.loggedin = true
+        next()
+      }
+    )
+  } else {
+    res.locals.loggedin = false
+    next()
+  }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ /* **
+ * Check Account type
+ * **/
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData
+  // if no user data, login is required to access this view
+  if (!accountData) {
+    req.flash("notice", "Please Log in to continue.")
+    return res.redirect("/account/login")
+  }
+  
+  // check the account type
+  if (accountData.account_type === "Employee" || accountData.account_type === "Admin") {
+    return next()
+  } else{
+    req.flash("notice", "You are not authorized to gain access to this page.")
+    return res.redirect("/account/login")
+  }
+}
+
 module.exports = Util
 
 
