@@ -18,7 +18,12 @@ const accountRoute = require("./routes/accountRoute");
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
- 
+const feedbackRoute = require("./routes/feedbackRoute");
+
+
+// after other routes
+app.use("/feedback", feedbackRoute);
+
 
 /* ***********************
  * Middleware 
@@ -30,7 +35,7 @@ app.use(session({
   }),
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUninitialized: true, 
+  saveUninitialized: true,
   name: 'sessionId',
 }))
 
@@ -38,6 +43,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+app.use("/feedback", feedbackRoute);
 
 // Express Messages Middleware
 app.use(require('connect-flash')())

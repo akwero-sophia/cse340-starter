@@ -42,9 +42,8 @@
   text-decoration: none;
 }
 
-#dynamic-nav li a:hover {
+ #dynamic-nav li a:hover {
   color: #ffcc00;
-  text-decoration: underline;
 }
 
 .hero-container {
@@ -213,7 +212,7 @@ form p {
   color: #ffffff;
 }
 
-.form-container a:hover {
+ .form-container a:hover {
   color: #ffcc00;
 }
 
@@ -253,7 +252,7 @@ form button {
   #wrapper {
     width: 70%;
     margin: auto;
-    border: 5px solid #244d9f;
+    border: 5px solid #03436b;
     background: white;
     padding: 10px;
     border-radius: 8px;
